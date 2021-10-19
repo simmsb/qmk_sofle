@@ -4,6 +4,7 @@
 #include "keymap_combo.h"
 #include "transactions.h"
 #include "raw_hid.h"
+#include "usb_descriptor.h"
 #include <string.h>
 
 enum sofle_layers {
@@ -155,8 +156,13 @@ static void render_buffer(void) {
     oled_write_raw((char *)screen_buf, sizeof(screen_buf));
 }
 
+static bool should_render = false;
+
 void oled_task_user(void) {
-    render_buffer();
+    if (should_render) {
+        render_buffer();
+        should_render = false;
+    }
     /* if (is_keyboard_master()) { */
     /*     render_logo_l(); */
     /* } else { */
@@ -195,9 +201,23 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
             if (pkt->to_master) {
                 copy_display_pkt(pkt, length - 1);
             } else {
-                transaction_rpc_send(USER_SEND_DISP, length - 1, pkt);
+                for (int i = 0; i < 4; i++) {
+                    if (transaction_rpc_send(USER_SEND_DISP, length - 1, pkt)) {
+                        break;
+                    }
+                }
             }
 
+            break;
+        }
+        case 2: {
+            should_render = true;
+            int x = 0;
+            for (int i = 0; i < 4; i++) {
+                if (transaction_rpc_send(USER_FLIP_DISP, sizeof(x), &x)) {
+                    break;
+                }
+            }
             break;
         }
         default:
@@ -215,8 +235,13 @@ void user_send_disp_handler(uint8_t length, const void *data, uint8_t out_len, v
     copy_display_pkt(pkt, length);
 }
 
+void user_flip_disp_handler(uint8_t length, const void *data, uint8_t out_len, void *out_data) {
+    should_render = true;
+}
+
 void keyboard_post_init_user(void) {
     transaction_register_rpc(USER_SEND_DISP, user_send_disp_handler);
+    transaction_register_rpc(USER_FLIP_DISP, user_flip_disp_handler);
 }
 
 #endif
