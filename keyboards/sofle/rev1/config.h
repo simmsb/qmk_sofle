@@ -3,9 +3,14 @@
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFC32
 #define PRODUCT_ID      0x0287
+#define SERIAL_NUM      "hehe01"
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    JosefAdamcik
 #define PRODUCT         Sofle
+
+
+#define RAW_USAGE_PAGE 0xff60
+#define RAW_USAGE_ID 0x69
 
 /* key matrix size */
 // Rows are doubled-up
@@ -17,7 +22,8 @@
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, B6 }
 #define DIODE_DIRECTION COL2ROW
 
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
+#define COMBO_TERM 50
 #define DEBOUNCE 5
 
 /* encoder support */

@@ -1,6 +1,13 @@
-
+EXTRAFLAGS += -flto
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
 ENCODER_ENABLE = yes
 CONSOLE_ENABLE = no
 EXTRAKEY_ENABLE = yes
+
+COMBO_ENABLE = yes
+COMMAND_ENABLE = yes
+
+RAW_ENABLE = yes
+
+VPATH += keyboards/sofle/

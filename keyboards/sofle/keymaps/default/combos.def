@@ -1,0 +1,25 @@
+COMB(qwEsc,         KC_ESC,           KC_Q, KC_W)
+COMB(t1Esc,         KC_ESC,           KC_GRV, KC_1)
+COMB(xcMetaX,       LALT(KC_X),       KC_X, KC_C)
+SUBS(xcSpcGrave,    " `",             KC_C, KC_V)
+SUBS(ypGoodNight,   "Goodnight!\n",   KC_Y, KC_P)
+
+COMB(yuBSPC,      KC_BSPC,          KC_Y, KC_U)
+COMB(gtBSPC,      KC_BSPC,          KC_GRV, KC_TILD)
+COMB(ssBSPC,      KC_BSPC,          KC_6, KC_7)
+
+COMB(uiDEL,       KC_DEL,           KC_U, KC_I)
+COMB(tbDEL,       KC_DEL,           KC_TILD, KC_BSLS)
+COMB(seDEL,       KC_DEL,           KC_7, KC_8)
+COMB(ioSLSH,      KC_SLSH,          KC_I, KC_O)
+COMB(opBSLS,      KC_BSLS,          KC_O, KC_P)
+
+COMB(hjLess,      KC_LT,            KC_H, KC_J)
+COMB(jkColon,     KC_COLN,          KC_J, KC_K)
+COMB(klGreat,     KC_GT,            KC_K, KC_L)
+
+COMB(nmDQuot,     KC_DQUO,          KC_N, KC_M)
+COMB(mltQuot,     KC_QUOT,          KC_M, KC_COMMA)
+COMB(commadotUnds,KC_UNDS,          KC_COMMA, KC_DOT)
+
+
